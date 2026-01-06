@@ -54,6 +54,7 @@ export function useJudgeme({
   const lastPathnameRef = useRef<string>('');
   const rerenderTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const isInitializedRef = useRef(false);
+  const initialRefreshDoneRef = useRef(false);
 
   // Memoize the refresh function to prevent recreation
   // This function will retry until widget elements are found in the DOM, then initialize them
@@ -126,6 +127,7 @@ export function useJudgeme({
         // DO NOT load installed.js - it causes refresh loops in Hydrogen/Oxygen
         // Instead, call the preloader directly using the retry mechanism
         console.log('Judge.me preloader script loaded, initializing widgets...');
+        initialRefreshDoneRef.current = true;
         refreshWidgets();
       })
       .catch((error) => {
@@ -150,6 +152,13 @@ export function useJudgeme({
     
     // Normalize pathname (remove trailing slash for comparison)
     const normalizedPathname = location.pathname.replace(/\/$/, '') || '/';
+    
+    // On first render, just record the pathname without refreshing
+    // (the script loading effect handles the initial refresh)
+    if (lastPathnameRef.current === '') {
+      lastPathnameRef.current = normalizedPathname;
+      return;
+    }
     
     // Skip if pathname hasn't actually changed
     if (lastPathnameRef.current === normalizedPathname) {

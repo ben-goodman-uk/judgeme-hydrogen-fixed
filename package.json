@@ -1,6 +1,6 @@
 {
   "name": "judgeme-hydrogen-fixed",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Fixed version of @judgeme/shopify-hydrogen for Hydrogen/Oxygen. Fixes infinite refresh loops caused by installed.js and improper React hooks.",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
