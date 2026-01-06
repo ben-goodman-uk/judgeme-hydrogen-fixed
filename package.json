@@ -1,0 +1,59 @@
+{
+  "name": "judgeme-hydrogen-fixed",
+  "version": "1.3.3",
+  "description": "Fixed version of @judgeme/shopify-hydrogen for Hydrogen/Oxygen. Fixes infinite refresh loops caused by installed.js and improper React hooks.",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts --clean",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "judgeme",
+    "judge.me",
+    "shopify",
+    "hydrogen",
+    "oxygen",
+    "react",
+    "reviews",
+    "remix",
+    "bug-fix",
+    "refresh-loop-fix"
+  ],
+  "author": "Ben Goodman",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bengoodman/judgeme-hydrogen-fixed"
+  },
+  "bugs": {
+    "url": "https://github.com/bengoodman/judgeme-hydrogen-fixed/issues"
+  },
+  "homepage": "https://github.com/bengoodman/judgeme-hydrogen-fixed#readme",
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "@remix-run/react": ">=2.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "react": "^18.2.0",
+    "@remix-run/react": "^2.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0"
+  }
+}
